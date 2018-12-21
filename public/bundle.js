@@ -9865,13 +9865,21 @@ class CommentList extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
 
 
 class CommentItem extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
+  constructor(...args) {
+    var _temp;
+
+    return _temp = super(...args), this.strikeOut = event => {
+      event.target.style.textDecoration = "line-through";
+    }, _temp;
+  }
+
   render() {
     return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
       "div",
       null,
       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         "li",
-        { key: this.props.comment },
+        { onClick: this.strikeOut, key: this.props.comment },
         this.props.comment
       )
     );
