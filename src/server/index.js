@@ -6,6 +6,7 @@ import { renderToString } from "react-dom/server";
 import { StaticRouter } from "react-router-dom";
 import { createStore } from "redux";
 import { Provider } from "react-redux";
+import Helmet from "react-helmet";
 import App from "../shared/App";
 
 const app = express();
@@ -30,15 +31,19 @@ app.get("*", (request, response, next) => {
     </Provider>
   );
 
+  const helmet = Helmet.renderStatic();
+
   response.send(`
       <!DOCTYPE html>
-      <html>
+      <html ${helmet.htmlAttributes.toString()}>
         <head>
-          <title>SSR with RR</title>
+          ${helmet.title.toString()}
+          ${helmet.meta.toString()}
+          ${helmet.link.toString()}
           <script src="/bundle.js" defer></script>
           <script>window.__DATA__ = ${serialize(comments)}</script>
         </head>
-        <body>
+        <body ${helmet.bodyAttributes.toString()}>
           <div id="app">${markup}</div>
         </body>
       </html>

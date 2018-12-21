@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Helmet from "react-helmet";
 import CommentList from "../browser/CommentList";
 
 class Container extends Component {
@@ -39,6 +40,12 @@ class Container extends Component {
   render() {
     return (
       <div>
+        <Helmet>
+          <meta charSet="utf-8" />
+          <meta name="description" content="Home page description" />
+          <meta name="viewport" content="width=device-width, initial-scale=1" />
+          <title>Home Page</title>
+        </Helmet>
         <form>
           <textarea
             onChange={this.handleChange}

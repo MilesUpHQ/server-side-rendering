@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import Helmet from "react-helmet";
 import CommentList from "../browser/CommentList";
 
 class CommentsPage extends Component {
@@ -16,6 +17,12 @@ class CommentsPage extends Component {
   render() {
     return (
       <div>
+        <Helmet>
+          <meta charSet="utf-8" />
+          <meta name="description" content="Comments page description" />
+          <meta name="viewport" content="width=device-width, initial-scale=1" />
+          <title>Comments Page</title>
+        </Helmet>
         {/* <form> */}
         <textarea
           onChange={this.handleChange}
