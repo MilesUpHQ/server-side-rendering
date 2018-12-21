@@ -4,6 +4,8 @@ import React from "react";
 import serialize from "serialize-javascript";
 import { renderToString } from "react-dom/server";
 import { StaticRouter } from "react-router-dom";
+import { createStore } from "redux";
+import { Provider } from "react-redux";
 import App from "../shared/App";
 
 const app = express();
@@ -14,11 +16,18 @@ app.use(express.static("public"));
 const comments = ["Comment from server 1", "Comment from server 2"];
 
 app.get("*", (request, response, next) => {
+  const reducer = (state, action) => {
+    return state;
+  };
+  const store = createStore(reducer, { comments: ["Redux"] });
+
   const context = {};
   const markup = renderToString(
-    <StaticRouter location={request.url} context={context}>
-      <App />
-    </StaticRouter>
+    <Provider store={store}>
+      <StaticRouter location={request.url} context={context}>
+        <App />
+      </StaticRouter>
+    </Provider>
   );
 
   response.send(`
