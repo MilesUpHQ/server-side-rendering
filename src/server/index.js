@@ -3,7 +3,7 @@ import cors from "cors";
 import React from "react";
 import serialize from "serialize-javascript";
 import { renderToString } from "react-dom/server";
-import App from "../browser/App";
+import App from "../shared/App";
 
 const app = express();
 

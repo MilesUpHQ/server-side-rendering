@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import CommentItem from "./CommentItem";
 
 class CommentList extends Component {
   render() {
@@ -10,7 +9,7 @@ class CommentList extends Component {
       <div>
         <ul>
           {this.props.comments.map(comment => (
-            <CommentItem comment={comment} />
+            <li key={comment}>{comment}</li>
           ))}
         </ul>
       </div>

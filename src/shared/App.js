@@ -1,12 +1,12 @@
 import React, { Component } from "react";
-import CommentList from "./CommentList";
+import CommentList from "../browser/CommentList";
 
 class App extends Component {
   constructor(props) {
     super(props);
 
     let data;
-    console.log(__isBrowser__);
+
     if (__isBrowser__) {
       data = window.__DATA__;
     } else {

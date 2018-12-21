@@ -497,12 +497,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react_dom__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__App__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared_App__ = __webpack_require__(18);
 
 
 
 
-Object(__WEBPACK_IMPORTED_MODULE_1_react_dom__["hydrate"])(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__App__["a" /* default */], null), document.getElementById("app"));
+Object(__WEBPACK_IMPORTED_MODULE_1_react_dom__["hydrate"])(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__shared_App__["a" /* default */], null), document.getElementById("app"));
 
 /***/ }),
 /* 7 */
@@ -9754,7 +9754,7 @@ if (process.env.NODE_ENV !== "production") {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__CommentList__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__browser_CommentList__ = __webpack_require__(20);
 
 
 
@@ -9777,7 +9777,7 @@ class App extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
     };
 
     let data;
-    console.log(true);
+
     if (true) {
       data = window.__DATA__;
     } else {
@@ -9814,7 +9814,7 @@ class App extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
           "Add"
         )
       ),
-      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__CommentList__["a" /* default */], { comments: this.state.comments })
+      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__browser_CommentList__["a" /* default */], { comments: this.state.comments })
     );
   }
 }
@@ -9822,14 +9822,13 @@ class App extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
 /* harmony default export */ __webpack_exports__["a"] = (App);
 
 /***/ }),
-/* 19 */
+/* 19 */,
+/* 20 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__CommentItem__ = __webpack_require__(20);
-
 
 
 class CommentList extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
@@ -9847,46 +9846,17 @@ class CommentList extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         "ul",
         null,
-        this.props.comments.map(comment => __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__CommentItem__["a" /* default */], { comment: comment }))
+        this.props.comments.map(comment => __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          "li",
+          { key: comment },
+          comment
+        ))
       )
     );
   }
 }
 
 /* harmony default export */ __webpack_exports__["a"] = (CommentList);
-
-/***/ }),
-/* 20 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-
-
-class CommentItem extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
-  constructor(...args) {
-    var _temp;
-
-    return _temp = super(...args), this.strikeOut = event => {
-      event.target.style.textDecoration = "line-through";
-    }, _temp;
-  }
-
-  render() {
-    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-      "div",
-      null,
-      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-        "li",
-        { onClick: this.strikeOut, key: this.props.comment },
-        this.props.comment
-      )
-    );
-  }
-}
-
-/* harmony default export */ __webpack_exports__["a"] = (CommentItem);
 
 /***/ })
 /******/ ]);
