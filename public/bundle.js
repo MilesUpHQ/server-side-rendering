@@ -497,12 +497,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react_dom__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__MyComponent__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__App__ = __webpack_require__(18);
 
 
 
 
-Object(__WEBPACK_IMPORTED_MODULE_1_react_dom__["hydrate"])(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__MyComponent__["a" /* default */], null), document.getElementById("app"));
+Object(__WEBPACK_IMPORTED_MODULE_1_react_dom__["hydrate"])(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__App__["a" /* default */], null), document.getElementById("app"));
 
 /***/ }),
 /* 7 */
@@ -9754,11 +9754,19 @@ if (process.env.NODE_ENV !== "production") {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__CommentList__ = __webpack_require__(19);
 
 
-class MyComponent extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
+
+class App extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
   constructor(props) {
     super(props);
+
+    this.handleChange = () => {
+      this.setState({
+        commentInput: event.target.value
+      });
+    };
 
     this.handleSubmit = event => {
       event.preventDefault();
@@ -9768,19 +9776,22 @@ class MyComponent extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
       });
     };
 
+    let data;
+    console.log(true);
+    if (true) {
+      data = window.__DATA__;
+    } else {
+      data = [];
+    }
+
     this.state = {
       commentInput: "",
-      comments: []
+      comments: data
     };
-
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleChange() {
-    this.setState({
-      commentInput: event.target.value
-    });
+  componentDidMount() {
+    console.log(this.state.comments);
   }
 
   render() {
@@ -9803,20 +9814,71 @@ class MyComponent extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
           "Add"
         )
       ),
+      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__CommentList__["a" /* default */], { comments: this.state.comments })
+    );
+  }
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (App);
+
+/***/ }),
+/* 19 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__CommentItem__ = __webpack_require__(20);
+
+
+
+class CommentList extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
+  render() {
+    if (!this.props.comments) {
+      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        "h4",
+        null,
+        "loading.."
+      );
+    }
+    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+      "div",
+      null,
       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         "ul",
         null,
-        this.state.comments.map(comment => __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          "li",
-          { key: comment },
-          comment
-        ))
+        this.props.comments.map(comment => __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__CommentItem__["a" /* default */], { comment: comment }))
       )
     );
   }
 }
 
-/* harmony default export */ __webpack_exports__["a"] = (MyComponent);
+/* harmony default export */ __webpack_exports__["a"] = (CommentList);
+
+/***/ }),
+/* 20 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+
+
+class CommentItem extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
+  render() {
+    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+      "div",
+      null,
+      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        "li",
+        { key: this.props.comment },
+        this.props.comment
+      )
+    );
+  }
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (CommentItem);
 
 /***/ })
 /******/ ]);

@@ -1,22 +1,33 @@
 import React, { Component } from "react";
+import CommentList from "./CommentList";
 
-class MyComponent extends Component {
+class App extends Component {
   constructor(props) {
     super(props);
+
+    let data;
+    console.log(__isBrowser__);
+    if (__isBrowser__) {
+      data = window.__DATA__;
+    } else {
+      data = [];
+    }
+
     this.state = {
       commentInput: "",
-      comments: []
+      comments: data
     };
-
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleChange() {
+  componentDidMount() {
+    console.log(this.state.comments);
+  }
+
+  handleChange = () => {
     this.setState({
       commentInput: event.target.value
     });
-  }
+  };
 
   handleSubmit = event => {
     event.preventDefault();
@@ -41,14 +52,10 @@ class MyComponent extends Component {
             Add
           </button>
         </form>
-        <ul>
-          {this.state.comments.map(comment => (
-            <li key={comment}>{comment}</li>
-          ))}
-        </ul>
+        <CommentList comments={this.state.comments} />
       </div>
     );
   }
 }
 
-export default MyComponent;
+export default App;
