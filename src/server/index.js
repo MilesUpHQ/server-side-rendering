@@ -3,6 +3,7 @@ import cors from "cors";
 import React from "react";
 import serialize from "serialize-javascript";
 import { renderToString } from "react-dom/server";
+import { StaticRouter } from "react-router-dom";
 import App from "../shared/App";
 
 const app = express();
@@ -10,9 +11,16 @@ const app = express();
 app.use(cors());
 app.use(express.static("public"));
 
-const markup = renderToString(<App />);
 const comments = ["Comment from server 1", "Comment from server 2"];
+
 app.get("*", (request, response, next) => {
+  const context = {};
+  const markup = renderToString(
+    <StaticRouter location={request.url} context={context}>
+      <App />
+    </StaticRouter>
+  );
+
   response.send(`
       <!DOCTYPE html>
       <html>

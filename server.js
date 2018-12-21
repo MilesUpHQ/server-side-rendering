@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 1);
+/******/ 	return __webpack_require__(__webpack_require__.s = 2);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -74,18 +74,57 @@ module.exports = require("react");
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+
+
+class CommentList extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
+  render() {
+    if (!this.props.comments) {
+      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        "h4",
+        null,
+        "loading.."
+      );
+    }
+    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+      "div",
+      null,
+      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        "ul",
+        null,
+        this.props.comments.map(comment => __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          "li",
+          { key: comment },
+          comment
+        ))
+      )
+    );
+  }
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (CommentList);
+
+/***/ }),
+/* 2 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_express__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_express__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_express___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_express__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_cors__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_cors__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_cors___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_cors__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_serialize_javascript__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_serialize_javascript__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_serialize_javascript___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_serialize_javascript__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_react_dom_server__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_react_dom_server__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_react_dom_server___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_react_dom_server__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__shared_App__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react_router_dom__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react_router_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_react_router_dom__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__shared_App__ = __webpack_require__(7);
+
 
 
 
@@ -98,9 +137,16 @@ const app = __WEBPACK_IMPORTED_MODULE_0_express___default()();
 app.use(__WEBPACK_IMPORTED_MODULE_1_cors___default()());
 app.use(__WEBPACK_IMPORTED_MODULE_0_express___default.a.static("public"));
 
-const markup = Object(__WEBPACK_IMPORTED_MODULE_4_react_dom_server__["renderToString"])(__WEBPACK_IMPORTED_MODULE_2_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__shared_App__["a" /* default */], null));
 const comments = ["Comment from server 1", "Comment from server 2"];
+
 app.get("*", (request, response, next) => {
+  const context = {};
+  const markup = Object(__WEBPACK_IMPORTED_MODULE_4_react_dom_server__["renderToString"])(__WEBPACK_IMPORTED_MODULE_2_react___default.a.createElement(
+    __WEBPACK_IMPORTED_MODULE_5_react_router_dom__["StaticRouter"],
+    { location: request.url, context: context },
+    __WEBPACK_IMPORTED_MODULE_2_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6__shared_App__["a" /* default */], null)
+  ));
+
   response.send(`
       <!DOCTYPE html>
       <html>
@@ -121,41 +167,102 @@ app.listen(3000, () => {
 });
 
 /***/ }),
-/* 2 */
+/* 3 */
 /***/ (function(module, exports) {
 
 module.exports = require("express");
 
 /***/ }),
-/* 3 */
+/* 4 */
 /***/ (function(module, exports) {
 
 module.exports = require("cors");
 
 /***/ }),
-/* 4 */
+/* 5 */
 /***/ (function(module, exports) {
 
 module.exports = require("serialize-javascript");
 
 /***/ }),
-/* 5 */
+/* 6 */
 /***/ (function(module, exports) {
 
 module.exports = require("react-dom/server");
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__browser_CommentList__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_router_dom__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_router_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react_router_dom__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Container__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__CommentsPage__ = __webpack_require__(10);
+
+
 
 
 
 class App extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
+  render() {
+    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+      "div",
+      null,
+      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        "ul",
+        null,
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          "li",
+          null,
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            __WEBPACK_IMPORTED_MODULE_1_react_router_dom__["Link"],
+            { to: "/" },
+            "Home"
+          )
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          "li",
+          null,
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            __WEBPACK_IMPORTED_MODULE_1_react_router_dom__["Link"],
+            { to: "/comments" },
+            "Comments"
+          )
+        )
+      ),
+      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        __WEBPACK_IMPORTED_MODULE_1_react_router_dom__["Switch"],
+        null,
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_router_dom__["Route"], { path: "/", exact: true, component: __WEBPACK_IMPORTED_MODULE_2__Container__["a" /* default */] }),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_router_dom__["Route"], { path: "/comments", component: __WEBPACK_IMPORTED_MODULE_3__CommentsPage__["a" /* default */] })
+      )
+    );
+  }
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (App);
+
+/***/ }),
+/* 8 */
+/***/ (function(module, exports) {
+
+module.exports = require("react-router-dom");
+
+/***/ }),
+/* 9 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__browser_CommentList__ = __webpack_require__(1);
+
+
+
+class Container extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
   constructor(props) {
     super(props);
 
@@ -216,44 +323,65 @@ class App extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
   }
 }
 
-/* harmony default export */ __webpack_exports__["a"] = (App);
+/* harmony default export */ __webpack_exports__["a"] = (Container);
 
 /***/ }),
-/* 7 */,
-/* 8 */
+/* 10 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__browser_CommentList__ = __webpack_require__(1);
 
 
-class CommentList extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
-  render() {
-    if (!this.props.comments) {
-      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-        "h4",
-        null,
-        "loading.."
-      );
+
+class CommentsPage extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
+  constructor(props) {
+    super(props);
+
+    this.handleChange = () => {
+      this.setState({
+        commentInput: event.target.value
+      });
+    };
+
+    this.handleSubmit = event => {
+      event.preventDefault();
+      this.setState({
+        comments: [...this.state.comments, this.state.commentInput],
+        commentInput: ""
+      });
+    };
+
+    let data;
+
+    if (false) {
+      data = window.__DATA__;
+    } else {
+      data = [];
     }
+
+    this.state = {
+      commentInput: "",
+      comments: data
+    };
+  }
+
+  componentDidMount() {
+    console.log(this.state.comments);
+  }
+
+  render() {
     return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
       "div",
       null,
-      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-        "ul",
-        null,
-        this.props.comments.map(comment => __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          "li",
-          { key: comment },
-          comment
-        ))
-      )
+      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__browser_CommentList__["a" /* default */], { comments: this.state.comments })
     );
   }
 }
 
-/* harmony default export */ __webpack_exports__["a"] = (CommentList);
+/* harmony default export */ __webpack_exports__["a"] = (CommentsPage);
 
 /***/ })
 /******/ ]);
