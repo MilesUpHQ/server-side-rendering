@@ -1,20 +1,46 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import Helmet from "react-helmet";
-import CommentList from "../browser/CommentList";
+import { fetchPopularRepos } from "./api";
 
 class CommentsPage extends Component {
-  state = {
-    commentInput: ""
-  };
+  constructor(props) {
+    super(props);
 
-  handleChange = () => {
-    this.setState({
-      commentInput: event.target.value
-    });
+    let repos;
+    if (__isBrowser__) {
+      repos = window.__INITIAL_DATA__;
+      delete window.__INITIAL_DATA__;
+    } else {
+      repos = this.props.staticContext.data;
+    }
+
+    this.state = {
+      repos,
+      loading: repos ? false : true
+    };
+  }
+
+  fetchRepos = lang => {
+    this.setState(() => ({
+      loading: true
+    }));
+
+    fetchPopularRepos(lang).then(repos =>
+      this.setState(() => ({
+        repos,
+        loading: false
+      }))
+    );
   };
 
   render() {
+    const { loading, repos } = this.state;
+
+    if (loading === true) {
+      return <p>LOADING</p>;
+    }
+
     return (
       <div>
         <Helmet>
@@ -23,22 +49,19 @@ class CommentsPage extends Component {
           <meta name="viewport" content="width=device-width, initial-scale=1" />
           <title>Comments Page</title>
         </Helmet>
-        {/* <form> */}
-        <textarea
-          onChange={this.handleChange}
-          type="text"
-          className="form-control"
-          value={this.state.commentInput}
-          placeholder="comment"
-        />
-        <button
-          onClick={() => this.props.addComment(this.state.commentInput)}
-          className="btn btn-primary"
-        >
-          Add
-        </button>
-        {/* </form> */}
-        <CommentList comments={this.props.comments} />
+        <ul style={{ display: "flex", flexWrap: "wrap" }}>
+          {repos.map(({ name, owner, stargazers_count, html_url }) => (
+            <li key={name} style={{ margin: 30 }}>
+              <ul>
+                <li>
+                  <a href={html_url}>{name}</a>
+                </li>
+                <li>@{owner.login}</li>
+                <li>{stargazers_count} stars</li>
+              </ul>
+            </li>
+          ))}
+        </ul>
       </div>
     );
   }
